@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';void main()=>runApp(MaterialApp(home:Scaffold(appBar:AppBar(title:Text('Al Quran Nusantara')),body:Center(child:Text('Tribute Alm. Soenarno RH & Almh. Soelami')))));
