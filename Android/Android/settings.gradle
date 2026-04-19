@@ -1,0 +1,2 @@
+rootProject.name = 'alquran_nusantara'
+include ':app'
