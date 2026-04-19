@@ -1,4 +1,4 @@
-name: Build Android AAB
+name: Build Fresh AAB
 
 on:
   workflow_dispatch:
@@ -14,11 +14,20 @@ jobs:
         with:
           flutter-version: 3.22.0
 
-      - run: flutter pub get
+      - name: Create Fresh Project
+        run: flutter create tempapp
 
-      - run: flutter build appbundle
+      - name: Replace Main Dart
+        run: cp lib/main.dart tempapp/lib/main.dart
 
-      - uses: actions/upload-artifact@v4
+      - name: Build AAB
+        run: |
+          cd tempapp
+          flutter pub get
+          flutter build appbundle
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
         with:
-          name: release-aab
-          path: build/app/outputs/bundle/release/app-release.aab
+          name: app-release-aab
+          path: tempapp/build/app/outputs/bundle/release/app-release.aab
